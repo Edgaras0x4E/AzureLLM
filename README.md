@@ -81,6 +81,15 @@ Combine the Azure OpenAI service with Azure Search for contextual completions:
 use Edgaras\AzureLLM\LLM;
 use Edgaras\AzureLLM\AzureOpenAI;
 
+$config = new LLM([
+    'apiKey' => '<YOUR-API-KEY>',
+    'endpoint' => 'https://<DEPLOYMENT>.openai.azure.com',
+    'deployment' => '<MODEL-DEPLOYMENT-ID>',
+    'apiVersion' => '<API-VERSION>'
+]); 
+
+$azureLLM = new AzureOpenAI($config);
+
 $inputMessages = [
     ['role' => 'system', 'content' => 'You are a helpful assistant.'],
     ['role' => 'user', 'content' => 'Summarize your knowledgebase']
