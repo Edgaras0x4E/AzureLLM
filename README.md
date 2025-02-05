@@ -2,9 +2,9 @@
 
 PHP package for integrating and interacting with deployed Azure LLM models.
 
-## 🚀 Changelog (v1.1.0)
+## 🚀 Changelog (v1.1.1)
 ### **New Features**
-- **Added `Index` Class**: Manage Azure AI Search indexes (create, update, delete, retrieve).
+- **Added `Index` Class**: Manage Azure AI Search indexes (create, update, delete, retrieve, search).
 - **Added `Indexer` Class**: Handle indexers to automate indexing from data sources.
 - **Added `DataSource` Class**: Manage data sources for Azure AI Search.
 - **Added Semantic Search Support**: Now indexes can have semantic configurations.
@@ -213,6 +213,7 @@ $dataSourceService->createDataSource('test-data-source', $dataSourceConfig);
 | | `getIndex($name)` | `name (string)` | Retrieves details of an index. |
 | | `listIndexes()` | - | Lists all indexes in Azure AI Search. |
 | | `getIndexStats($name)` | `name (string)` | Gets statistics for a specific index. |
+| | `searchIndex($indexName, $query, $top, $searchParams)` | `indexName (string)`, `query (string)` | Performs a search query on an index. |
 | **Indexer** | `createIndexer($name, $config)` | `name (string)`, `config (array)` | Creates an indexer that links a data source to an index. |
 | | `updateIndexer($name, $config)` | `name (string)`, `config (array)` | Updates an existing indexer. |
 | | `deleteIndexer($name)` | `name (string)` | Deletes an indexer. |

@@ -110,4 +110,29 @@ class Index {
             throw new \RuntimeException("Failed to get index statistics: " . $e->getMessage());
         }
     }
+
+    public function searchIndex(string $indexName, string $query, int $top = 10, array $searchParams = []): array
+    {
+        $url = $this->config->getApiUrl("indexes/$indexName/docs/search");
+
+        $body = array_merge([
+            'search' => $query,
+            'top' => $top,  
+        ], $searchParams);
+
+        try {
+            $response = $this->client->post($url, [
+                'headers' => [
+                    'api-key' => $this->config->getApiKey(),
+                    'Content-Type' => 'application/json'
+                ],
+                'json' => $body
+            ]);
+
+            return json_decode($response->getBody(), true);
+        } catch (RequestException $e) {
+            throw new \RuntimeException("Failed to search index: " . $e->getMessage());
+        }
+    }
+
 }
