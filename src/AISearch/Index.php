@@ -74,7 +74,7 @@ class Index {
             throw new \RuntimeException("Failed to delete index: " . $e->getMessage());
         }
     }
-
+ 
     public function getIndex(string $indexName): array
     {
         $url = $this->config->getApiUrl('indexes', $indexName);

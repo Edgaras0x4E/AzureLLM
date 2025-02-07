@@ -11,7 +11,7 @@ class DataSource {
     private Client $client;
     private Auth $config;
 
-    public function __construct(Auth $config)
+    public function __construct(Auth $config) 
     {
         $this->config = $config;
         $this->client = new Client([

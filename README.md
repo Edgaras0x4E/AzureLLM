@@ -2,21 +2,29 @@
 
 PHP package for integrating and interacting with deployed Azure LLM models.
 
-## 🚀 Changelog (v1.1.1)
+## 🚀 Changelog (v1.2.0)
 ### **New Features**
-- **Added `Index` Class**: Manage Azure AI Search indexes (create, update, delete, retrieve, search).
-- **Added `Indexer` Class**: Handle indexers to automate indexing from data sources.
-- **Added `DataSource` Class**: Manage data sources for Azure AI Search.
-- **Added Semantic Search Support**: Now indexes can have semantic configurations.
+- **Added `Agent` Class**: Manage Azure AI Assistants (create, update, delete, retrieve, list).
+- **Added `Thread` Class**: Handle conversation threads (create, send messages, run, manage runs).
+- **Added `VectorStore` Class**: Manage vector stores and file attachments. 
 
+---
 
-## Features
-- Simplifies managing Azure OpenAI API settings such as API keys, endpoints, deployments, and API versions.
-- Full support for **indexes, indexers, and data sources** in Azure AI Search.
+## 📌 Documentation 
+- 📖 **[AI Agents](docs/agents.md)**
+- 🔍 **[AI Search](docs/aisearch.md)**
+
+---
+
+## Features 
+- Simplifies managing **Azure OpenAI API** settings such as API keys, endpoints, deployments, and API versions.
+- Full support for **Agents, Threads, and Vector Stores**.
+- Integrated **Azure AI Search** functionalities.
 
 ## Requirements
 
-PHP 8.1+
+- PHP 8.1+
+- Composer
 
 ## Installation
 
@@ -201,36 +209,44 @@ $dataSourceConfig = [
 // Create Data Source
 $dataSourceService->createDataSource('test-data-source', $dataSourceConfig);
 ```
-
-## Method Reference Table
-
-| Class | Method | Required Parameters | Description |
-|--------|-------------|------|------|
-| **AzureOpenAI** | `chatCompletions($messages, $options, $data_sources)` | `messages (array)` | Sends chat completion request to Azure OpenAI. |
-| **Index** | `createIndex($name, $fields, $semanticConfig)` | `name (string)`, `fields (array)` | Creates a new index with optional semantic settings. |
-| | `updateIndex($name, $fields, $semanticConfig)` | `name (string)`, `fields (array)` | Updates an existing index with fields and semantic settings. |
-| | `deleteIndex($name)` | `name (string)` | Deletes an index. |
-| | `getIndex($name)` | `name (string)` | Retrieves details of an index. |
-| | `listIndexes()` | - | Lists all indexes in Azure AI Search. |
-| | `getIndexStats($name)` | `name (string)` | Gets statistics for a specific index. |
-| | `searchIndex($indexName, $query, $top, $searchParams)` | `indexName (string)`, `query (string)` | Performs a search query on an index. |
-| **Indexer** | `createIndexer($name, $config)` | `name (string)`, `config (array)` | Creates an indexer that links a data source to an index. |
-| | `updateIndexer($name, $config)` | `name (string)`, `config (array)` | Updates an existing indexer. |
-| | `deleteIndexer($name)` | `name (string)` | Deletes an indexer. |
-| | `runIndexer($name)` | `name (string)` | Runs an indexer manually. |
-| | `getIndexer($name)` | `name (string)` | Retrieves indexer details. |
-| | `listIndexers()` | - | Lists all indexers. |
-| | `getIndexerStatus($name)` | `name (string)` | Retrieves execution status of an indexer. |
-| | `resetIndexer($name)` | `name (string)` | Resets an indexer (clears checkpoint and reindexes all data). |
-| **DataSource** | `createDataSource($name, $config)` | `name (string)`, `config (array)` | Creates a new data source. |
-| | `updateDataSource($name, $config)` | `name (string)`, `config (array)` | Updates a data source. |
-| | `deleteDataSource($name)` | `name (string)` | Deletes a data source. |
-| | `getDataSource($name)` | `name (string)` | Retrieves details of a data source. |
-| | `listDataSources()` | - | Lists all data sources. |
+[Full AI Search Docs](docs/aisearch.md)
 
 
+### 8. Agents & Threads
+```php
+use Edgaras\AzureLLM\LLM; 
+use Edgaras\AzureLLM\Agents\Agent;
+use Edgaras\AzureLLM\Agents\Thread;
+
+// Initialize
+$config = new LLM([
+    'apiKey' => '<API-KEY>',
+    'endpoint' => 'https://<DEPLOYMENT-NAME>.openai.azure.com',
+    'deployment' => '<MODEL>',
+    'apiVersion' => '2024-05-01-preview'
+]);
+
+$agent = new Agent($config);
+$thread = new Thread($config);
+
+// Create an Agent
+$agentResponse = $agent->createAgent("SupportBot", "Assist users with support queries.");
+$agentId = $agentResponse['id'];
+
+// Start a conversation thread
+$threadResponse = $thread->createThread();
+$threadId = $threadResponse['id'];
+
+// Send a message
+$thread->addMessageToThread($threadId, "user", "How do I reset my password?");
+
+// Run the AI Assistant on the thread
+$thread->runThread($threadId, $agentId);
+```
+[Full AI Agents Docs](docs/agents.md)
 
 ## Useful links
 
 - [Azure OpenAI Service REST API reference](https://learn.microsoft.com/en-us/azure/ai-services/openai/reference).
 - [Azure AI Search documentation](https://learn.microsoft.com/en-us/azure/search/).
+- [What is Azure AI Agent Service?](https://learn.microsoft.com/en-us/azure/ai-services/agents/overview).
