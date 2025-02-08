@@ -221,6 +221,7 @@ print_r($deleteFileResponse);
 |-------------|------|------|
 | `createVectorStore($name)` | `name (string)` | Create a vector store. |
 | `listVectorStores()` | - | List all vector stores. |
+| `getVectorStore($vectorStoreId)` | `vectorStoreId (string)` |  Retrieve vector store details. |
 | `deleteVectorStore($vectorStoreId)` | `vectorStoreId (string)` | Delete a vector store. |
 | `uploadFile($filePath)` | `filePath (string)` | Upload a file to Azure OpenAI. |
 | `attachFileToVectorStore($vectorStoreId, $fileId)` | `vectorStoreId (string)`, `fileId (string)` | Attach a file to a vector store. |
