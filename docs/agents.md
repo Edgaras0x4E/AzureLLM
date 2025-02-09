@@ -213,6 +213,7 @@ print_r($deleteFileResponse);
 | `getRunStatus($threadId, $runId)` | `threadId (string)`, `runId (string)` | Check the status of a thread run. |
 | `cancelRun($threadId, $runId)` | `threadId (string)`, `runId (string)` | Cancel an ongoing thread run. |
 | `listThreadRuns($threadId)` | `threadId (string)` | List all runs for a thread. |
+| `deleteThread($threadId)` | `threadId (string)` | Delete thread. |
 
 
 ## **VectorStore Methods** 

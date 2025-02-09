@@ -175,4 +175,30 @@ class Thread
             ];
         }
     }
+
+
+    public function deleteThread(string $threadId): array
+    {
+        $url = "/openai/threads/{$threadId}?api-version={$this->config->getApiVersion()}";
+
+        try {
+            $response = $this->client->delete($url, [
+                'headers' => [
+                    'api-key' => $this->config->getApiKey(),
+                ],
+            ]);
+
+            if ($response->getStatusCode() === 204) {
+                return [];  
+            }
+
+            return json_decode($response->getBody()->getContents(), true);
+        } catch (RequestException $e) {
+            return [
+                'error' => $e->getMessage(),
+                'response' => $e->hasResponse() ? $e->getResponse()->getBody()->getContents() : null,
+            ];
+        }
+    }
+
 }
