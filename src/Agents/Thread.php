@@ -39,14 +39,18 @@ class Thread
         }
     }
  
-    public function addMessageToThread(string $threadId, string $role, string $content): array
+    public function addMessageToThread(string $threadId, string $role, string $content, array $attachments = []): array
     {
         $url = "/openai/threads/{$threadId}/messages?api-version={$this->config->getApiVersion()}";
 
         $body = [
-            'role' => $role,  
+            'role' => $role,
             'content' => $content,
         ];
+
+        if (!empty($attachments)) {
+            $body['attachments'] = $attachments;
+        }
 
         try {
             $response = $this->client->post($url, [

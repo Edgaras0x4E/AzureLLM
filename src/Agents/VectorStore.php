@@ -142,6 +142,30 @@ class VectorStore
             ];
         }
     }
+
+    public function deleteUploadedFile(string $fileId): array
+    {
+        $url = "/openai/files/{$fileId}?api-version={$this->config->getApiVersion()}";
+
+        try { 
+            $response = $this->client->delete($url, [
+                'headers' => [
+                    'api-key' => $this->config->getApiKey(),
+                ],
+            ]);
+
+            if ($response->getStatusCode() === 204) {
+                return [];  
+            }
+
+            return json_decode($response->getBody()->getContents(), true);
+        } catch (RequestException $e) {
+            return [
+                'error' => $e->getMessage(),
+                'response' => $e->hasResponse() ? $e->getResponse()->getBody()->getContents() : null,
+            ];
+        }
+    }
  
     public function attachFileToVectorStore(string $vectorStoreId, string $fileId): array
     {

@@ -207,7 +207,7 @@ print_r($deleteFileResponse);
 | Method | Required Parameters | Description |
 |-------------|------|------|
 | `createThread()` | - | Create a conversation thread. |
-| `addMessageToThread($threadId, $role, $content)` | `threadId (string)`, `role (string)`, `content (string)` | Send a message to a thread. |
+| `addMessageToThread($threadId, $role, $content, $attachments)` | `threadId (string)`, `role (string)`, `content (string)`, `attachments (array)` | Send a message to a thread. |
 | `getThreadMessages($threadId)` | `threadId (string)` | Retrieve all messages in a thread. |
 | `runThread($threadId, $agentId)` | `threadId (string)`, `agentId (string)` | Run a thread with an AI assistant. |
 | `getRunStatus($threadId, $runId)` | `threadId (string)`, `runId (string)` | Check the status of a thread run. |
@@ -224,6 +224,7 @@ print_r($deleteFileResponse);
 | `getVectorStore($vectorStoreId)` | `vectorStoreId (string)` |  Retrieve vector store details. |
 | `deleteVectorStore($vectorStoreId)` | `vectorStoreId (string)` | Delete a vector store. |
 | `uploadFile($filePath)` | `filePath (string)` | Upload a file to Azure OpenAI. |
+| `deleteUploadedFile($fileId)` | `fileId (string)` | Delete uploaded file. |
 | `attachFileToVectorStore($vectorStoreId, $fileId)` | `vectorStoreId (string)`, `fileId (string)` | Attach a file to a vector store. |
 | `listFilesInVectorStore($vectorStoreId)` | `vectorStoreId (string)` | List files in a vector store. |
 | `deleteFileFromVectorStore($vectorStoreId, $fileId)` | `vectorStoreId (string)`, `fileId (string)` | Delete a file from a vector store. |
