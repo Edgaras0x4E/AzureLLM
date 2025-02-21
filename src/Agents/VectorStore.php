@@ -43,6 +43,28 @@ class VectorStore
             ];
         }
     }
+
+    public function updateVectorStore(string $vectorStoreId, array $updateData): array
+    {
+        $url = "/openai/vector_stores/{$vectorStoreId}?api-version={$this->config->getApiVersion()}";
+
+        try {
+            $response = $this->client->post($url, [
+                'headers' => [
+                    'api-key' => $this->config->getApiKey(),
+                    'Content-Type' => 'application/json',
+                ],
+                'json' => $updateData,
+            ]);
+
+            return json_decode($response->getBody()->getContents(), true);
+        } catch (RequestException $e) {
+            return [
+                'error' => $e->getMessage(),
+                'response' => $e->hasResponse() ? $e->getResponse()->getBody()->getContents() : null,
+            ];
+        }
+    }
  
     public function listVectorStores(): array
     {

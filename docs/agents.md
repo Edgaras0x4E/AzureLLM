@@ -221,6 +221,7 @@ print_r($deleteFileResponse);
 | Method | Required Parameters | Description |
 |-------------|------|------|
 | `createVectorStore($name)` | `name (string)` | Create a vector store. |
+| `updateVectorStore($vectorStoreId, $updateData)` | `vectorStoreId (string)`, `updateData (array)` | Update vector store. |
 | `listVectorStores()` | - | List all vector stores. |
 | `getVectorStore($vectorStoreId)` | `vectorStoreId (string)` |  Retrieve vector store details. |
 | `deleteVectorStore($vectorStoreId)` | `vectorStoreId (string)` | Delete a vector store. |

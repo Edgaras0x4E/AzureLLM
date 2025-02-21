@@ -2,7 +2,7 @@
 
 PHP package for integrating and interacting with deployed Azure LLM models.
 
-## 🚀 Changelog (v1.2.3)
+## 🚀 Changelog (v1.2.4)
 ### **New Features**
 - **Added `Agent` Class**: Manage Azure AI Assistants (create, update, delete, retrieve, list).
 - **Added `Thread` Class**: Handle conversation threads (create, send messages, run, manage runs).

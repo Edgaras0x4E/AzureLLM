@@ -2,7 +2,7 @@
     "name": "edgaras/azurellm",
     "description": "PHP package for integrating and interacting with deployed Azure LLM models",
     "type": "library",
-    "homepage": "https://github.com/Edgaras7/AzureLLM",
+    "homepage": "https://github.com/Edgaras0x4E/AzureLLM",
     "license": "MIT",
     "keywords": ["azure","ai","llm","openai","gpt"],
     "autoload": {
