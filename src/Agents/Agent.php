@@ -18,7 +18,7 @@ class Agent
         $this->client = new Client(['base_uri' => $config->getEndpoint()]);
     }
  
-    public function createAgent(string $name, string $instructions, string $description = '', array $tools = [], ?string $vectorStoreId = null): array 
+    public function createAgent(string $name, string $instructions, string $description = '', array $tools = [], ?string $vectorStoreId = null, array $additionalParams = []): array 
     {
         $url = "/openai/assistants?api-version={$this->config->getApiVersion()}";
  
@@ -29,6 +29,8 @@ class Agent
             'model' => $this->config->getDeployment(),
             'tools' => $tools
         ];
+
+        $body = array_merge($body, $additionalParams);
  
         if ($vectorStoreId) {
             $body['tools'][] = ['type' => 'file_search'];

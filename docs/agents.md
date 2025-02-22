@@ -196,11 +196,11 @@ print_r($deleteFileResponse);
 
 | Method | Required Parameters | Description |
 |-------------|------|------|
-| `createAgent($name, $instructions, $description, $tools, $vectorStoreId)` | `name (string)`, `instructions (string)`, `description (string, optional)`, `tools (array, optional)`, `vectorStoreId (string, optional)` | Create an AI assistant. |
-| `updateAgent($agentId, $updates, $vectorStoreId)` | `agentId (string)`, `updates (array)`, `vectorStoreId (string, optional)` | Update an existing assistant. |
-| `deleteAgent($agentId)` | `agentId (string)` | Delete an assistant. |
-| `getAgent($agentId)` | `agentId (string)` | Retrieve assistant details. |
-| `listAgents()` | - | List all assistants. | 
+| `createAgent($name, $instructions, $description, $tools, $vectorStoreId, $additionalParams)` | `name (string)`, `instructions (string)`, `description (string, optional)`, `tools (array, optional)`, `vectorStoreId (string, optional)`, `additionalParams (array, optional)` | Create an AI agent. |
+| `updateAgent($agentId, $updates, $vectorStoreId)` | `agentId (string)`, `updates (array)`, `vectorStoreId (string, optional)` | Update an existing agent. |
+| `deleteAgent($agentId)` | `agentId (string)` | Delete an agent. |
+| `getAgent($agentId)` | `agentId (string)` | Retrieve agent details. |
+| `listAgents()` | - | List all agents. | 
 
 ## **Thread Methods**
 
@@ -209,7 +209,7 @@ print_r($deleteFileResponse);
 | `createThread()` | - | Create a conversation thread. |
 | `addMessageToThread($threadId, $role, $content, $attachments)` | `threadId (string)`, `role (string)`, `content (string)`, `attachments (array)` | Send a message to a thread. |
 | `getThreadMessages($threadId)` | `threadId (string)` | Retrieve all messages in a thread. |
-| `runThread($threadId, $agentId)` | `threadId (string)`, `agentId (string)` | Run a thread with an AI assistant. |
+| `runThread($threadId, $agentId)` | `threadId (string)`, `agentId (string)` | Run a thread with an AI agent. |
 | `getRunStatus($threadId, $runId)` | `threadId (string)`, `runId (string)` | Check the status of a thread run. |
 | `cancelRun($threadId, $runId)` | `threadId (string)`, `runId (string)` | Cancel an ongoing thread run. |
 | `listThreadRuns($threadId)` | `threadId (string)` | List all runs for a thread. |
