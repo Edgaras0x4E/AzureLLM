@@ -209,7 +209,7 @@ print_r($deleteFileResponse);
 | `createThread()` | - | Create a conversation thread. |
 | `addMessageToThread($threadId, $role, $content, $attachments)` | `threadId (string)`, `role (string)`, `content (string)`, `attachments (array)` | Send a message to a thread. |
 | `getThreadMessages($threadId)` | `threadId (string)` | Retrieve all messages in a thread. |
-| `runThread($threadId, $agentId)` | `threadId (string)`, `agentId (string)` | Run a thread with an AI agent. |
+| `runThread($threadId, $agentId, $options)` | `threadId (string)`, `agentId (string)`, `options (array)` | Run a thread with an AI agent. |
 | `getRunStatus($threadId, $runId)` | `threadId (string)`, `runId (string)` | Check the status of a thread run. |
 | `cancelRun($threadId, $runId)` | `threadId (string)`, `runId (string)` | Cancel an ongoing thread run. |
 | `listThreadRuns($threadId)` | `threadId (string)` | List all runs for a thread. |

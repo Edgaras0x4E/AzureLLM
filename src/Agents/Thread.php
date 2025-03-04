@@ -69,6 +69,7 @@ class Thread
             ];
         }
     }
+
  
     public function getThreadMessages(string $threadId): array
     {
@@ -90,13 +91,17 @@ class Thread
         }
     }
  
-    public function runThread(string $threadId, string $agentId): array
+    public function runThread(string $threadId, string $agentId, array $options = []): array
     {
         $url = "/openai/threads/{$threadId}/runs?api-version={$this->config->getApiVersion()}";
 
         $body = [
             'assistant_id' => $agentId,
         ];
+
+        if (!empty($options)) {
+            $body = array_merge($body, $options);
+        }
 
         try {
             $response = $this->client->post($url, [
