@@ -2,11 +2,9 @@
 
 PHP package for integrating and interacting with deployed Azure LLM models.
 
-## 🚀 Changelog (v1.2.6)
+## 🚀 Changelog (v1.4.0)
 ### **New Features**
-- **Added `Agent` Class**: Manage Azure AI Assistants (create, update, delete, retrieve, list).
-- **Added `Thread` Class**: Handle conversation threads (create, send messages, run, manage runs).
-- **Added `VectorStore` Class**: Manage vector stores and file attachments. 
+- **Added `DeepSeek`** model support.
 
 ---
 
@@ -245,8 +243,43 @@ $thread->runThread($threadId, $agentId);
 ```
 [Full AI Agents Docs](docs/agents.md)
 
+
+### 9. Basic usage (DeepSeek)
+Send requests to your DeepSeek deployment:
+
+```php
+
+use Edgaras\AzureLLM\LLM;
+use Edgaras\AzureLLM\DeepSeek;
+
+$config = new LLM([
+    'apiKey' => '<YOUR-API-KEY>',
+    'endpoint' => 'https://<DEPLOYMENT>.services.ai.azure.com',
+    'deployment' => '<MODEL-DEPLOYMENT-ID>',
+    'apiVersion' => '<API-VERSION>'
+]); 
+
+$deepSeek = new DeepSeek($config);
+
+$inputMessages = [
+    ['role' => 'system', 'content' => 'You are a helpful assistant.'],
+    ['role' => 'user', 'content' => 'What is the capital of Lithuania?']
+];
+
+$options = [
+    "temperature" => 0.7,
+    "top_p" => 0.95,
+    "max_tokens" => 150 
+];
+
+$response = $deepSeek->chatCompletions($inputMessages, $options);
+
+```
+
+
 ## Useful links
 
 - [Azure OpenAI Service REST API reference](https://learn.microsoft.com/en-us/azure/ai-services/openai/reference).
 - [Azure AI Search documentation](https://learn.microsoft.com/en-us/azure/search/).
+- [Tutorial: Get started with DeepSeek-R1 reasoning model in Azure AI model inference](https://learn.microsoft.com/en-us/azure/ai-foundry/model-inference/tutorials/get-started-deepseek-r1?tabs=rest).
 - [What is Azure AI Agent Service?](https://learn.microsoft.com/en-us/azure/ai-services/agents/overview).

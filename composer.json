@@ -4,7 +4,7 @@
     "type": "library",
     "homepage": "https://github.com/Edgaras0x4E/AzureLLM",
     "license": "MIT",
-    "keywords": ["azure","ai","llm","openai","gpt"],
+    "keywords": ["azure","ai","llm","openai","gpt","deepseek"],
     "autoload": {
         "psr-4": {
             "Edgaras\\AzureLLM\\": "src/"
