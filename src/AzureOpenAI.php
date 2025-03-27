@@ -22,14 +22,9 @@ class AzureOpenAI
         $this->validateMessages($messages);
 
         $url = "/openai/deployments/{$this->config->getDeployment()}/chat/completions?api-version={$this->config->getApiVersion()}";
-        $body = [
+        $body = array_merge([
             "messages" => $messages,
-            "temperature" => $options['temperature'] ?? 0.7,
-            "top_p" => $options['top_p'] ?? 0.95,
-            "max_tokens" => $options['max_tokens'] ?? 1000,
-            "stop" => $options['stop'] ?? null,
-            "stream" => $options['stream'] ?? false,
-        ];
+        ], $options);
 
         if (isset($data_sources) && count($data_sources)>0) {
             $this->validateDataSources($data_sources);

@@ -2,7 +2,7 @@
 
 PHP package for integrating and interacting with deployed Azure LLM models.
 
-## 🚀 Changelog (v1.4.0)
+## 🚀 Changelog (v1.4.1)
 ### **New Features**
 - **Added `DeepSeek`** model support.
 
